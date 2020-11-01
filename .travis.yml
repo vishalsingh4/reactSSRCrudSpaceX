@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "8"
+cache: npm
+jobs:
+  include:
+    - stage: Install and Test
+      script:
+        - echo 'Installing Dependencies!!'
+        - npm install
+        - echo 'Testing!!'
+        - npm test
+    - stage: Deploy
+      script:
+        - npm install -g firebase-tools
+        - npm build
+        - firebase deploy --token "$FIREBASE_TOKEN"
+stages:
+  - name: Install and Test
+    # require the type to be a PR
+    if: type = pull_request
+  - name: Deploy
+    # require the type to be push to master
+    if: type = push AND branch = master
