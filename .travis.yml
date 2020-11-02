@@ -6,13 +6,11 @@ jobs:
   include:
     - stage: Install and Test
       script:
-        - echo 'Installing!!'
+        - echo 'Installing Dependencies!!'
         - npm install
-        - echo 'Building!!'
-        - npm run build
-        - echo 'Starting!!'
-        - npm run start
         - echo 'Testing!!'
+        - npm run build
+        - npm run start
         - npm run test
     - stage: Deploy
       provider: heroku
@@ -27,4 +25,4 @@ stages:
      if: type = pull_request
    - name: Deploy
      # require the type to be push to main branch
-          if: type = push AND branch = main
+     if: type = push AND branch = main
