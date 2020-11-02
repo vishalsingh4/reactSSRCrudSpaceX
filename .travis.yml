@@ -11,8 +11,6 @@ script:
   - npm run test
   - echo '******Building*******'
   - npm run build
-  - echo '******Starting*******'
-  - npm run start
 deploy:
   provider: heroku
   api-key: 
