@@ -31,7 +31,7 @@ const launchError = () => ({type: FETCH_LAUNCH_FAILURE});
 // FETCH MISSILE LAUNCHES API
 export const fetchLaunches = searchQuery => (dispatch, getState) => {
   dispatch(requestLaunches());
-  return fetch(`http://localhost:3000/api/launches${searchQuery}`)
+  return fetch(`api/launches${searchQuery}`)
       .then(response => response.json())
       .then(launches => dispatch(receivedLaunches(launches)))
       .catch(err => dispatch(launchError(err)));

@@ -55,7 +55,7 @@ const browserConfig = {
   plugins: [ 
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'prod')
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
       }
     }),
     new webpack.HotModuleReplacementPlugin(),
@@ -114,7 +114,7 @@ const serverConfig = {
   plugins: [ 
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'prod')
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
       }
     }),
     new webpack.HotModuleReplacementPlugin(),
