@@ -9,7 +9,7 @@ jobs:
         - echo 'Installing Dependencies!!'
         - npm install
         - echo 'Testing!!'
-        - npm test
+        - npm run test
         - npm start
     - stage: Deploy
       provider: heroku
