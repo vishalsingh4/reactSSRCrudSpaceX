@@ -11,14 +11,19 @@ jobs:
         - echo 'Testing!!'
         - npm test
     - stage: Deploy
-      script:
-        - npm install -g firebase-tools
-        - npm build
-        - firebase deploy --token "$FIREBASE_TOKEN"
-stages:
-  - name: Install and Test
-    # require the type to be a PR
-    if: type = pull_request
-  - name: Deploy
-    # require the type to be push to master
-    if: type = push AND branch = master
+      provider: heroku
+      api-key: 
+        secure: "2cElLOYDvXDymYGQjvACjZLDssyPOcCsvdFcTcQcgCD8zjSz14sFVPmqBcHEaRxhUy89PhHIEfBGypzxDxTUzwlUveoGRgaIZAtAq4FcMnWuVhUgpYhc5WFjUYvfdmsV+GJ+bZ3YY+E6EYMHxL3ukpDAxW5Fm/Gva2mosPVv7whQjEMTke5q7/fG02yUWIlml/0nqZpP8hL5mQ6iFPza2+mhUF4x3wN025hDpqqeIgxs46byHJPZiTRZBr0JqJT0Bmf6Oj0R2J6TtvAsFdHbOFBqJVMlQMG6PCirBby1H9lAzJCCfw6+zPQV584uPsWeG0oYpx8SRx1U7F2TSEoX4qHacZFa2sfBxNhoizhs8rWZA8DKDfj29alTMfD3/ywGIaEKGJLiA8jMx56WJ6SPu9+ebwZCgcwLa1GCVv9ekYt7vSdg6hHRBFyjFocGuTFpMN5Xdr0iEGdGvLOk2K/5CxeXH/058vAio2i2j86lQxmCWAq3Zux3XAgkP8FhE9wnTG7+ZQdFMGq62J6dEdgef69jxr3R1vPYMIkYkA3NfKjflV9wkzpTJus3WLUVFBTQI5GMyTC4DT2PF1Gzp5OyDmDyJkrSKHbIwGRyN2VAFqP49h0d7GoNc40zeMiJXk+CktKRPcIgst+gjxXB0zS236/M/Ojqcxxw3itR2y95scU="
+      app: spacex-reactssr1 
+      on: vishalsingh4/reactSSRCrudSpaceX
+      # script:
+      #   - npm install -g firebase-tools
+      #   - npm build
+      #   - firebase deploy --token "$FIREBASE_TOKEN"
+ stages:
+   - name: Install and Test
+     # require the type to be a PR
+     if: type = pull_request
+   - name: Deploy
+     # require the type to be push to master
+          if: type = push AND branch = master
