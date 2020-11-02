@@ -10,7 +10,7 @@ jobs:
         - npm install
         - echo 'Testing!!'
         - npm run test
-        - npm start
+        - npm build
     - stage: Deploy
       provider: heroku
       api-key: 
