@@ -5,8 +5,8 @@ cache: npm
 script:
   - echo '******Installing Dependencies*******'
   - npm install
-  - echo '******Testing*******'
-  - npm run test
+  # - echo '******Testing*******'
+  # - npm run test
   - echo '******Building*******'
   - npm run build
 deploy:
