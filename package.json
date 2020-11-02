@@ -1,0 +1,19 @@
+{
+  "name": "spacexssr",
+  "version": "1.0.0",
+  "description": "A client ssr app using space x apis",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishalsingh4/reactSSRCrudSpaceX.git"
+  },
+  "author": "vishal singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vishalsingh4/reactSSRCrudSpaceX/issues"
+  },
+  "homepage": "https://github.com/vishalsingh4/reactSSRCrudSpaceX#readme"
+}
