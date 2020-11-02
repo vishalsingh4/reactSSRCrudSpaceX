@@ -11,7 +11,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
-    "build": "cross-env NODE_ENV=production webpack & cross-env NODE_ENV=production nodemon server.js"
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "keywords": [],
   "author": "vishal singh",
