@@ -13,6 +13,10 @@ import "source-map-support/register";
 
 const app = express();
 
+const host = '0.0.0.0';
+
+const port = process.env.PORT || 3000;
+
 const apiUri = 'https://api.spaceXdata.com/v3/launches';
 
 app.use(cors());
@@ -22,7 +26,7 @@ app.get("/api/launches", (req, res) => {
   fetch(apiUri)
     .then(response => response.json())
     .then(response => res.json(response))
-    .catch(err => res.status(500).send( {error: `Error occured while fetching the data. Please try again...${err}`}))
+    .catch(err => res.status(500).send({ error: `Error occured while fetching the data. Please try again...${err}` }))
 });
 
 app.get("*", (req, res, next) => {
@@ -67,7 +71,7 @@ app.get("*", (req, res, next) => {
     .catch(next);
 });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(port, host, () => {
   console.log("Server is listening....");
 });
 

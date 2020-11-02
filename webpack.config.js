@@ -109,26 +109,8 @@ const serverConfig = {
     ]
   },
   externals: {
-    'express': 'commonjs express'
+    'express': 'commonjs2 express'
   },
-  plugins: [ 
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
-      }
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin({
-      filename: "public/css/[name].css"
-    }),
-      new BrotliPlugin({ //brotli plugin
-        asset: '[path].br[query]',
-        test: /\.(js|css|html|svg)$/,
-        threshold: 10240,
-        minRatio: 0.8
-      }),
-      new BundleAnalyzerPlugin({analyzerMode: 'static'})
-   ],
 };
 
 module.exports = [browserConfig, serverConfig];
