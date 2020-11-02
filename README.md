@@ -11,6 +11,18 @@ Install Dependencies
  Test
  - npm run test
  - npm run test:watch
- 
- Travis
+
+Build
+ - npm run build
+
+Travis
  - CI/ CD process
+
+Heroku
+ - https://spacex-reactssr1.herokuapp.com/
+
+Reports
+- /build-optimiser-report.html
+
+Lighthouse
+- /lighthouse-website-report.html
