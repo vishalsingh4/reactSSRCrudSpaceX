@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchLaunches } from "../reducers";
+import { fetchLaunches, updateLaunches } from "../reducers";
 import Filters from "../components/Filters";
 import Flights from "../components/Flights";
 import Loader from "../components/Loader";
@@ -15,22 +15,23 @@ class Home extends Component {
     launchFilters: yearMap,
   };
 
-  static initialAction(searchQuery) {
-    return fetchLaunches(searchQuery);
+  static initialAction(launches) {
+    return updateLaunches(launches);
   }
 
   componentDidMount() {
-    if(!this.props.launches) {
-      this.props.dispatch(Home.initialAction(this.props.location.search));
-    }
     this.checkAndUpdateSelectedValue();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      this.props.dispatch(Home.initialAction(this.props.location.search));
+      this.props.dispatch(this.fetchFilteredLaunches());
       this.checkAndUpdateSelectedValue();
     }
+  }
+
+  fetchFilteredLaunches = () => {
+    return fetchLaunches(this.props.location.search);
   }
 
   checkAndUpdateSelectedValue = () => {
@@ -88,7 +89,7 @@ class Home extends Component {
       launchFilters
     } = this.state;
 
-    if(loading) {
+    if (loading) {
       return <Loader />;
     }
 
@@ -103,12 +104,16 @@ class Home extends Component {
               <Filters history={history} location={location} launchFilters={launchFilters} />
             </div>
             <div className="col-12 p-0 flight-container">
-              <Flights launches={launches} location={location} />
+              {
+                launches && launches.length > 0 ? (
+                  <Flights launches={launches} location={location} />
+                ) : (<div className="text-center font-weight-bold text-danger">No Record Found</div>)
+              }
             </div>
           </div>
         </div>
         <div className="text-center mt-4 mb-2">
-        <h6 className="card-title font-weight-bold">Developed by: <span className="text-primary">Vishal Singh</span></h6>
+          <h6 className="card-title font-weight-bold">Developed by: <span className="text-primary">Vishal Singh</span></h6>
         </div>
       </div>
     );
@@ -121,5 +126,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Home);
-
-// export default Home;

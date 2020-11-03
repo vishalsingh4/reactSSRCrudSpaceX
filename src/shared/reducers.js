@@ -29,10 +29,14 @@ const receivedLaunches = launches => ({type: FETCH_LAUNCH_SUCCESS, payload: laun
 const launchError = () => ({type: FETCH_LAUNCH_FAILURE});
 
 // FETCH MISSILE LAUNCHES API
-export const fetchLaunches = searchQuery => (dispatch, getState) => {
+export const fetchLaunches = searchQuery => dispatch => {
   dispatch(requestLaunches());
   return fetch(`api/launches${searchQuery}`)
       .then(response => response.json())
       .then(launches => dispatch(receivedLaunches(launches)))
       .catch(err => dispatch(launchError(err)));
+};
+
+export const updateLaunches = launches => dispatch => {
+  dispatch(receivedLaunches(launches));
 };

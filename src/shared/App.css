@@ -46,14 +46,15 @@ body {
   }
 
   .rocket-image {
-    width: 12rem;
-    height: 12rem;
+    max-width: 12rem;
+    max-height: 12rem;
   }
 
   .flight-tile {
     width: 11rem !important;
     max-width: 12rem !important;
     max-height: 30rem !important;
+    min-height: 30rem;
   }
 
   .flight-container {
@@ -71,7 +72,8 @@ body {
   }
 
   .flight-tile {
-    width: 11rem !important;
-    height: 30rem;
+    max-width: 11rem !important;
+    max-height: 34rem !important;
+    min-height: 34rem;
   }
 }

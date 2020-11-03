@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import url from 'url';
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
@@ -23,7 +24,8 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.get("/api/launches", (req, res) => {
-  fetch(apiUri)
+  const queryObject = url.parse(req.url, true).search ? url.parse(req.url, true).search : '';
+  fetch(`${apiUri}${queryObject}`)
     .then(response => response.json())
     .then(response => res.json(response))
     .catch(err => res.status(500).send({ error: `Error occured while fetching the data. Please try again...${err}` }))
@@ -31,16 +33,17 @@ app.get("/api/launches", (req, res) => {
 
 app.get("*", (req, res, next) => {
   const store = configureStore();
-  const promises = routes.reduce((acc, route) => {
-    if (matchPath(req.url, route) && route.component && route.component.initialAction) {
-      acc.push(Promise.resolve(store.dispatch(route.component.initialAction())));
-    }
-    return acc;
-  }, []);
-
-  Promise.all(promises)
-    .then(() => {
+  const queryObject = url.parse(req.url, true).search ? url.parse(req.url, true).search : '';
+  const pathName = url.parse(req.url, true).pathname;
+  fetch(`${apiUri}${queryObject}`)
+    .then(response => response.json())
+    .then(response => {
       const context = {};
+      routes.map(route => {
+        if (matchPath(pathName, route) && route.component && route.component.initialAction) {
+          store.dispatch(route.component.initialAction(response));
+        }
+      });
       const markup = renderToString(
         <Provider store={store}>
           <StaticRouter location={req.url} context={context}>
@@ -74,10 +77,3 @@ app.get("*", (req, res, next) => {
 app.listen(port, host, () => {
   console.log("Server is listening....");
 });
-
-// if (module.hot) {
-//   module.hot.accept('./server.js', function() {
-//     console.log('🔁  HMR Reloading `./server`...');
-//   });
-//   console.info('✅  Server-side HMR Enabled!');
-// }
