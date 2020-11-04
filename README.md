@@ -18,11 +18,15 @@ Build
 Travis
  - CI/ CD process
 
-Heroku
+Github App URL
+ - https://github.com/vishalsingh4/reactSSRCrudSpaceX
+Heroku App URL
  - https://spacex-reactssr1.herokuapp.com/
 
-Reports
-- /build-optimiser-report.html
+Reports (Please find all the documents in reports folder)
+ - Jest coverage report
+ - Build optimiser report
+ - Travis CI build report
+ - Heroku CD report
+ - Lighthouse report
 
-Lighthouse
-- /lighthouse-website-report.html
